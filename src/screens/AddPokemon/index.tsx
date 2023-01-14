@@ -1,31 +1,65 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { MainContainer } from '@components/Containers/Main'
 import { HeaderBack } from '@components/Header'
-import { Box } from '@components/Box'
+import { AnimatedBox, Box } from '@components/Box'
 import { SimplePokemon } from '@components/Cards/SimplePokemon'
 import { useGetPokemons } from '@root/hooks/pokemons'
 import { FlashList } from '@shopify/flash-list'
 import { SIMPLE_CARD_WIDTH } from '@root/utils/commons'
+import { ArrowCircleUp } from 'phosphor-react-native'
 
 import { useTheme } from '@root/theme/ThemeProvider'
-import { ActivityIndicator, FlatList } from 'react-native'
+import { ActivityIndicator, Animated, Pressable } from 'react-native'
 
 export const AddPokemon = () => {
   const { state, handleLoadMore } = useGetPokemons()
 
-  const ref = useRef(null)
+  const [currentOffset, setCurrentOffset] = useState<number>(0)
+
+  const ref = useRef<FlashList<Result>>(null)
+
+  const animation = useRef(new Animated.Value(0)).current
 
   const theme = useTheme()
 
-  /* useEffect(() => {
-    setTimeout(() => {
-      ref.current.scrollToEnd({ animated: true })
-    }, 2000)
-  }, [])
- */
+  const scrollToStart = () => {
+    ref.current?.scrollToOffset({ animated: true, offset: 0 })
+    setCurrentOffset(0)
+  }
+
+  useEffect(() => {
+    console.log(currentOffset)
+    if (currentOffset <= 0) {
+      Animated.timing(animation, {
+        toValue: 0,
+        duration: 900,
+        useNativeDriver: true,
+      }).start()
+    } else {
+      Animated.timing(animation, {
+        toValue: 1,
+        duration: 900,
+        useNativeDriver: true,
+      }).start()
+    }
+  }, [currentOffset])
+
   return (
     <MainContainer>
-      <HeaderBack title="Agregrar Pokémon" />
+      <HeaderBack title="Agregrar Pokémon">
+        <Pressable onPress={scrollToStart} disabled={!currentOffset}>
+          <AnimatedBox
+            opacity={animation}
+            style={{ transform: [{ scale: animation }] }}
+          >
+            <ArrowCircleUp
+              size={24}
+              weight="fill"
+              color={theme.colors.primary}
+            />
+          </AnimatedBox>
+        </Pressable>
+      </HeaderBack>
       <Box flex={1} paddingHorizontal={'m'}>
         <FlashList
           ref={ref}
@@ -38,7 +72,9 @@ export const AddPokemon = () => {
           renderItem={({ item }) => <SimplePokemon {...item} key={item.url} />}
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.9}
-          drawDistance={1}
+          onScrollEndDrag={event => {
+            setCurrentOffset(event.nativeEvent.contentOffset.y)
+          }}
           ListFooterComponent={() => {
             if (state.isLoading) {
               return (

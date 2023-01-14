@@ -21,10 +21,6 @@ export const useGetPokemons = () => {
   })
 
   useEffect(() => {
-    console.log(state)
-  }, [state.pokemonList])
-
-  useEffect(() => {
     const fetchPokemon = async () => {
       try {
         setState({ isLoading: true })

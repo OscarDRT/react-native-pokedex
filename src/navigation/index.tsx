@@ -9,8 +9,9 @@ import { Profile } from '@screens/Profile'
 import { useTheme } from '@root/theme/ThemeProvider'
 import { Hash, House, User } from 'phosphor-react-native'
 import { scale } from '@root/utils/commons'
-import { PokemonCatalog } from '@screens/PokemonCatalog'
+import { Pokedex } from '@screens/Pokedex'
 import { Counter } from '@screens/Counter'
+import { AddPokemon } from '@screens/AddPokemon'
 
 export const navigationRef = createNavigationContainerRef()
 
@@ -25,6 +26,8 @@ export const Navigation = () => {
         screenOptions={{ headerShown: false }}
       >
         <RootStack.Screen name={'TabNavigator'} component={TabContainer} />
+
+        <RootStack.Screen name={'AddPokemon'} component={AddPokemon} />
       </RootStack.Navigator>
     </NavigationContainer>
   )
@@ -37,8 +40,19 @@ const TabContainer = () => {
     <AppTabs.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: theme.colors.secondaryBackground,
-        tabBarInactiveTintColor: theme.colors.secondaryBackground,
+        tabBarActiveTintColor: theme.colors.primary,
+        tabBarInactiveTintColor: theme.colors.secondary,
+        tabBarStyle: {
+          backgroundColor: theme.colors.primaryForeground,
+          paddingTop: 7,
+          borderTopLeftRadius: scale(24),
+          borderTopRightRadius: scale(24),
+          /* borderLeftWidth: 0.2,
+          borderRightWidth: 0.2, */
+          borderTopWidth: 0,
+          position: 'absolute',
+          overflow: 'hidden',
+        },
       }}
     >
       <AppTabs.Screen
@@ -57,8 +71,8 @@ const TabContainer = () => {
       />
 
       <AppTabs.Screen
-        name={'PokemonCatalog'}
-        component={PokemonCatalog}
+        name={'Pokedex'}
+        component={Pokedex}
         options={{
           tabBarLabel: 'Pokédex',
           tabBarIcon: ({ color, size, focused }) => (

@@ -1,7 +1,7 @@
 import { apiUrl } from '.'
 
 const getPokemons = (params: { limit: number; offset: number }) => {
-  return apiUrl.get<User>('pokemon', {
+  return apiUrl.get<PokemonListResponse>('pokemon', {
     params,
   })
 }

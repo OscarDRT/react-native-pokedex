@@ -2,15 +2,12 @@ import { scale } from '@root/utils/commons'
 import { createTheme } from '@shopify/restyle'
 
 const palette = {
-  primary: '#00ACEE',
+  primary: '#F7B916',
   secondary: '#FFFFFF',
-  tertiary: '#c2c9d6',
-  alternate: 'red',
-  primaryBackground: '#FFFFFF',
-  secondaryBackground: '#000000',
-  primaryText: '#101213',
-  secondaryText: '#57636C',
-  tertiaryText: '#FFFFFF',
+  primaryBackground: '#2A3051',
+  primaryForeground: '#343E63',
+  primaryText: '#000000',
+  secondaryText: '#FFFFFF',
   transparent: 'transparent',
 }
 
@@ -18,13 +15,10 @@ const theme = createTheme({
   colors: {
     primary: palette.primary,
     secondary: palette.secondary,
-    tertiary: palette.tertiary,
-    alternate: palette.alternate,
     primaryBackground: palette.primaryBackground,
-    secondaryBackground: palette.secondaryBackground,
+    primaryForeground: palette.primaryForeground,
     primaryText: palette.primaryText,
     secondaryText: palette.secondaryText,
-    tertiaryText: palette.tertiaryText,
     transparent: palette.transparent,
   },
   spacing: {
@@ -41,21 +35,18 @@ const theme = createTheme({
   },
   textVariants: {
     title: {
-      fontSize: scale(17),
+      fontSize: scale(24),
       fontWeight: '700',
-      lineHeight: scale(20),
       color: 'primaryText',
     },
     subtitle: {
-      fontSize: scale(13),
+      fontSize: scale(14),
       fontWeight: '400',
-      lineHeight: scale(16),
       color: 'secondaryText',
     },
     body: {
-      fontSize: scale(15),
+      fontSize: scale(12),
       fontWeight: '400',
-      lineHeight: scale(20),
       color: 'primaryText',
     },
     defaults: {},

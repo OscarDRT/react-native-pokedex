@@ -83,15 +83,22 @@ export const HeaderBack: React.FC<IHeaderBack> = ({
       <HeaderLeft>
         {showBackButton && (
           <Pressable
-            style={{ marginRight: theme.spacing.l }}
+            style={{ marginRight: theme.spacing.m }}
             onPress={() => navigation.canGoBack() && navigation.goBack()}
           >
-            <CaretLeft size={scale(24)} />
+            <CaretLeft
+              weight={'bold'}
+              size={scale(24)}
+              color={theme.colors.secondaryText}
+            />
           </Pressable>
         )}
         <Box justifyContent={'center'}>
-          {!!title && <Text variant={'title'}>{title}</Text>}
-          {!!subtitle && <Text variant={'subtitle'}>{subtitle}</Text>}
+          {!!title && (
+            <Text variant={'title'} color={'secondaryText'}>
+              {title}
+            </Text>
+          )}
         </Box>
       </HeaderLeft>
       {children}

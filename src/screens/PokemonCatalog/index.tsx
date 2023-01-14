@@ -4,17 +4,17 @@ import { Text } from '@components/Text'
 import { HeaderBack } from '@components/Header'
 import { Box } from '@components/Box'
 
-export const Home = () => {
+export const PokemonCatalog = () => {
   return (
     <MainContainer>
-      <HeaderBack title="Home" />
+      <HeaderBack title="PokemonCatalog" />
       <Box
         flex={1}
         paddingHorizontal={'m'}
         justifyContent={'center'}
         alignItems={'center'}
       >
-        <Text>Home Screen</Text>
+        <Text>PokemonCatalog Screen</Text>
       </Box>
     </MainContainer>
   )

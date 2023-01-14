@@ -6,5 +6,6 @@ type RootStackParamList = {
 
 type AppTabParamList = {
   Profile: undefined
-  Home: undefined
+  PokemonCatalog: undefined
+  Counter: undefined
 }

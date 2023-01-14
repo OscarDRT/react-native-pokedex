@@ -7,9 +7,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Profile } from '@screens/Profile'
 import { useTheme } from '@root/theme/ThemeProvider'
-import { House, User } from 'phosphor-react-native'
+import { Hash, House, User } from 'phosphor-react-native'
 import { scale } from '@root/utils/commons'
-import { Home } from '@screens/Home'
+import { PokemonCatalog } from '@screens/PokemonCatalog'
+import { Counter } from '@screens/Counter'
 
 export const navigationRef = createNavigationContainerRef()
 
@@ -36,7 +37,6 @@ const TabContainer = () => {
     <AppTabs.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false,
         tabBarActiveTintColor: theme.colors.secondaryBackground,
         tabBarInactiveTintColor: theme.colors.secondaryBackground,
       }}
@@ -45,6 +45,7 @@ const TabContainer = () => {
         name={'Profile'}
         component={Profile}
         options={{
+          tabBarLabel: 'Perfil',
           tabBarIcon: ({ color, size, focused }) => (
             <User
               size={scale(size)}
@@ -56,11 +57,27 @@ const TabContainer = () => {
       />
 
       <AppTabs.Screen
-        name={'Home'}
-        component={Home}
+        name={'PokemonCatalog'}
+        component={PokemonCatalog}
         options={{
+          tabBarLabel: 'Pokédex',
           tabBarIcon: ({ color, size, focused }) => (
             <House
+              size={scale(size)}
+              color={color}
+              weight={focused ? 'fill' : 'thin'}
+            />
+          ),
+        }}
+      />
+
+      <AppTabs.Screen
+        name={'Counter'}
+        component={Counter}
+        options={{
+          tabBarLabel: 'Contador',
+          tabBarIcon: ({ color, size, focused }) => (
+            <Hash
               size={scale(size)}
               color={color}
               weight={focused ? 'fill' : 'thin'}

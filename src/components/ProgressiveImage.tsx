@@ -8,26 +8,31 @@ import {
   StyleSheet,
   StyleProp,
   ImageStyle,
+  ViewStyle,
 } from 'react-native'
 import { Box } from './Box'
+import FastImage, {
+  Source,
+  ResizeMode,
+  FastImageProps,
+} from 'react-native-fast-image'
 
-const AnimatedFastImage = Animated.createAnimatedComponent(Image)
+const AnimatedFastImage = Animated.createAnimatedComponent(FastImage)
 
 interface ProgressiveImageProps {
-  source: string
-  resizeMode?: ImageResizeMode
-  style?: StyleProp<ImageStyle>
+  source: Source
+  resizeMode?: ResizeMode
+  containerStyle?: StyleProp<ViewStyle>
+  style?: Animated.WithAnimatedValue<StyleProp<ImageStyle>>
 }
 
-export const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
-  source,
-  resizeMode = 'cover',
-  style,
-}) => {
+export const ProgressiveImage: React.FC<
+  ProgressiveImageProps & FastImageProps
+> = ({ source, resizeMode = 'cover', style, ...props }) => {
   const { sourceUriAnimated, sourceUri } = useMemo(
     () => ({
       sourceUriAnimated: new Animated.Value(0),
-      sourceUri: source,
+      sourceUri: source.uri,
     }),
     []
   )
@@ -42,11 +47,13 @@ export const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
 
   return (
     <Box flex={1} alignItems={'center'} justifyContent={'center'}>
-      <Animated.Image
+      <AnimatedFastImage
         resizeMode={resizeMode}
         source={{ uri: sourceUri }}
-        style={[StyleSheet.absoluteFill, style, { opacity: sourceUriAnimated }]}
+        /* @ts-ignore */
+        style={[style, StyleSheet.absoluteFill, { opacity: sourceUriAnimated }]}
         onLoad={() => onImageLoad()}
+        {...props}
       />
     </Box>
   )

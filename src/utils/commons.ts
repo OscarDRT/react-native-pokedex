@@ -2,8 +2,9 @@ import { Dimensions } from 'react-native'
 
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
+import { Export } from 'phosphor-react-native'
 
-const { width, height } = Dimensions.get('window')
+export const { width, height } = Dimensions.get('window')
 
 //Guideline sizes are based on standard ~5" screen mobile device
 const guidelineBaseWidth = 350
@@ -14,6 +15,8 @@ const scale = (size: number) => (width / guidelineBaseWidth) * size
 const verticalScale = (size: number) => (height / guidelineBaseHeight) * size
 const moderateScale = (size: number, factor = 0.5) =>
   size + (scale(size) - size) * factor
+
+export const SIMPLE_CARD_WIDTH = width / 2 - scale(16) * 2
 
 export { scale, verticalScale, moderateScale, screenSize }
 

@@ -16,7 +16,7 @@ export const useGetPokemons = () => {
     isLoading: boolean
   }>({
     pokemonList: [],
-    offset: 2,
+    offset: 20,
     isLoading: false,
   })
 
@@ -28,7 +28,7 @@ export const useGetPokemons = () => {
     const fetchPokemon = async () => {
       try {
         setState({ isLoading: true })
-        const response = await getPokemons({ limit: 2, offset: state.offset })
+        const response = await getPokemons({ limit: 20, offset: state.offset })
         setState({
           pokemonList: removeDuplicates(
             state.pokemonList,
@@ -44,7 +44,7 @@ export const useGetPokemons = () => {
   }, [state.offset])
 
   const handleLoadMore = () => {
-    setState({ offset: state.offset + 2 })
+    setState({ offset: state.offset + 20 })
   }
 
   return { state, handleLoadMore }

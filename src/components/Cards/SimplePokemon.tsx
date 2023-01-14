@@ -1,10 +1,8 @@
 import { Box } from '@components/Box'
 import { ProgressiveImage } from '@components/ProgressiveImage'
 import { Text } from '@components/Text'
-import { scale, width } from '@root/utils/commons'
+import { scale, SIMPLE_CARD_WIDTH } from '@root/utils/commons'
 import React, { FC, useMemo } from 'react'
-
-const CARD_WIDTH = width / 2 - scale(16) * 2
 
 export const SimplePokemon: FC<Result> = ({ name, url }) => {
   const pokemonImageUrl = useMemo(
@@ -15,15 +13,15 @@ export const SimplePokemon: FC<Result> = ({ name, url }) => {
 
   return (
     <Box
-      width={CARD_WIDTH}
-      height={CARD_WIDTH}
+      width={SIMPLE_CARD_WIDTH}
+      height={SIMPLE_CARD_WIDTH}
       backgroundColor={'primaryForeground'}
       borderRadius={scale(18)}
       overflow={'hidden'}
     >
       <Box
-        height={CARD_WIDTH / 1.5}
-        width={CARD_WIDTH}
+        height={SIMPLE_CARD_WIDTH / 1.5}
+        width={SIMPLE_CARD_WIDTH}
         backgroundColor={'primary'}
         justifyContent={'center'}
         alignContent={'center'}

@@ -59,7 +59,7 @@ export const AddPokemon = () => {
 
   return (
     <MainContainer>
-      <HeaderBack title="Agregrar Pokémon">
+      <HeaderBack title="Add Pokémon">
         <Pressable onPress={scrollToStart} disabled={!currentOffset}>
           <AnimatedBox
             opacity={animation}

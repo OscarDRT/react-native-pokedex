@@ -23,7 +23,7 @@ export const AddPokemonNavigation = () => {
         borderRadius={scale(24)}
       >
         <Text variant={'body'} color={'primaryText'} fontWeight={'bold'}>
-          Agregar Pokémon
+          Add Pokémon
         </Text>
       </Box>
     </Pressable>

@@ -47,11 +47,9 @@ const TabContainer = () => {
         tabBarInactiveTintColor: theme.colors.secondary,
         tabBarStyle: {
           backgroundColor: theme.colors.primaryForeground,
-          paddingTop: 7,
-          borderTopLeftRadius: scale(24),
-          borderTopRightRadius: scale(24),
-          /* borderLeftWidth: 0.2,
-          borderRightWidth: 0.2, */
+          paddingTop: scale(10),
+          borderTopLeftRadius: scale(54),
+          borderTopRightRadius: scale(54),
           borderTopWidth: 0,
           position: 'absolute',
           overflow: 'hidden',
@@ -62,7 +60,6 @@ const TabContainer = () => {
         name={'Profile'}
         component={Profile}
         options={{
-          tabBarLabel: 'Perfil',
           tabBarIcon: ({ color, size, focused }) => (
             <User
               size={scale(size)}
@@ -92,7 +89,6 @@ const TabContainer = () => {
         name={'Counter'}
         component={Counter}
         options={{
-          tabBarLabel: 'Contador',
           tabBarIcon: ({ color, size, focused }) => (
             <Hash
               size={scale(size)}

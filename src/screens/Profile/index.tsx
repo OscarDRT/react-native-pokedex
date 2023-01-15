@@ -8,7 +8,7 @@ import { AddPokemonNavigation } from '@components/Buttons/AddPokemonNavigation'
 export const Profile = () => {
   return (
     <MainContainer>
-      <HeaderBack title="Perfil" showBackButton={false}>
+      <HeaderBack title="Profile" showBackButton={false}>
         <AddPokemonNavigation />
       </HeaderBack>
       <Box

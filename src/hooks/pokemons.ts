@@ -1,12 +1,23 @@
 import { getPokemonById, getPokemons } from '@root/api/pokemon'
+import { AplicationState } from '@root/store'
+import { pokedexActions } from '@root/store/Pokedex/action'
+import { pokemonsSelector, pokemonSelector } from '@root/store/Pokedex/selector'
+import { removeDuplicates, useAppDispatch } from '@root/utils/commons'
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useState } from './useState'
 
-const removeDuplicates = (
-  currentList: Array<Result>,
-  newList: Array<Result>
-) => {
-  return [...new Set([...currentList, ...newList])]
+export const usePokedexActions = () => {
+  const dispatch = useAppDispatch()
+  return pokedexActions(dispatch)
+}
+
+export const usePokemonsState = () => {
+  return useSelector(pokemonsSelector)
+}
+
+export const usePokemonState = (id: string) => {
+  return useSelector((state: AplicationState) => pokemonSelector(state, id))
 }
 
 export const useGetPokemons = () => {

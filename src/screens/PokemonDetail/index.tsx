@@ -3,7 +3,11 @@ import { MainContainer } from '@components/Containers/Main'
 import { HeaderBack } from '@components/Header'
 import { capitalize, scale, StackNavigationProps } from '@root/utils/commons'
 import { Box } from '@components/Box'
-import { useGetPokemonById } from '@root/hooks/pokemons'
+import {
+  useGetPokemonById,
+  usePokedexActions,
+  usePokemonsState,
+} from '@root/hooks/pokemons'
 import { ActivityIndicator, Alert } from 'react-native'
 import { Text } from '@components/Text'
 import { SimplePokemon } from '@components/Cards/SimplePokemon'
@@ -16,6 +20,16 @@ const PokemonDetail: FC<StackNavigationProps<'PokemonDetail'>> = ({
   const { name, url, pokemonId } = route.params
 
   const { state } = useGetPokemonById({ pokemonId: pokemonId as string })
+
+  const pokemons = usePokemonsState()
+
+  const actions = usePokedexActions()
+
+  const InPokedex = pokemons?.includes(state?.pokemon?.id?.toString())
+
+  const addPokemon = () => {
+    if (!InPokedex) actions.setPokemon({ pokemon: state.pokemon })
+  }
 
   const {
     pokemon: { types, moves },
@@ -103,7 +117,8 @@ const PokemonDetail: FC<StackNavigationProps<'PokemonDetail'>> = ({
               <Button
                 title={'Add'}
                 variant={'primary'}
-                onPress={() => Alert.alert('Hola')}
+                onPress={() => addPokemon()}
+                disabled={InPokedex}
               />
             </Box>
           </Box>

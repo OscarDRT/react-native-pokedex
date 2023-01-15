@@ -28,6 +28,13 @@ const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
+const removeDuplicates = (
+  currentList: Array<Result>,
+  newList: Array<Result>
+) => {
+  return [...new Set([...currentList, ...newList])]
+}
+
 const useAppDispatch: () => AppDispatch = useDispatch
 const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
@@ -42,6 +49,7 @@ export {
   capitalize,
   useAppDispatch,
   useAppSelector,
+  removeDuplicates,
 }
 
 export interface StackNavigationProps<

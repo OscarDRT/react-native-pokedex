@@ -64,6 +64,11 @@ const theme = createTheme({
 
   buttonVariants: {
     primary: { backgroundColor: 'primary', height: scale(56) },
+    disabled: {
+      backgroundColor: 'primaryForeground',
+      height: scale(56),
+      opacity: 0.3,
+    },
   },
 })
 

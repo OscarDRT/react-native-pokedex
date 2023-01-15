@@ -22,6 +22,10 @@ export const getSprite = (name: string) => {
   return `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${name}.png`
 }
 
+export const capitalize = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 export { scale, verticalScale, moderateScale, screenSize }
 
 export interface StackNavigationProps<

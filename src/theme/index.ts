@@ -50,7 +50,7 @@ const theme = createTheme({
       color: 'primaryText',
     },
     subtitle: {
-      fontSize: scale(14),
+      fontSize: scale(16),
       fontWeight: '400',
       color: 'secondaryText',
     },

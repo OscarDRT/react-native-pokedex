@@ -8,17 +8,27 @@ type Pokemon = {
   id: number
   is_default: boolean
   location_area_encounters: string
-  /* moves: Move[] */
+
   name: string
   order: number
   past_types: any[]
   /*   species: Species
-  sprites: Sprites
   stats: Stat[]
   */
+  moves: Move[]
   sprites: Sprites
   types: Type[]
   weight: number
+}
+
+type Move = {
+  move: Move2
+  /* version_group_details: VersionGroupDetail[] */
+}
+
+type Move2 = {
+  name: string
+  url: string
 }
 
 type Sprites = {

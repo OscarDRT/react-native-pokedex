@@ -28,6 +28,8 @@ export const SimplePokemon: FC<SimplePokemonProps> = ({
         height={SIMPLE_CARD_WIDTH}
         backgroundColor={'primaryForeground'}
         borderRadius={scale(18)}
+        borderColor={'primaryForeground'}
+        borderWidth={1}
         overflow={'hidden'}
       >
         <Box

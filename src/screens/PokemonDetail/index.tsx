@@ -10,7 +10,7 @@ import {
 } from '@root/hooks/pokemons'
 import { ActivityIndicator, Alert } from 'react-native'
 import { Text } from '@components/Text'
-import { SimplePokemon } from '@components/Cards/SimplePokemon'
+import { SimplePokemon } from '@components/Cards/SimplePokemonCard'
 import { Button } from '@components/Buttons/Button'
 
 const PokemonDetail: FC<StackNavigationProps<'PokemonDetail'>> = ({
@@ -28,7 +28,11 @@ const PokemonDetail: FC<StackNavigationProps<'PokemonDetail'>> = ({
   const InPokedex = pokemons?.includes(state?.pokemon?.id?.toString())
 
   const addPokemon = () => {
-    if (!InPokedex) actions.setPokemon({ pokemon: state.pokemon })
+    if (!InPokedex) {
+      actions.setPokemon({ pokemon: state.pokemon })
+      /* @ts-ignore */
+      navigation.navigate('TabNavigator', { screen: 'Pokedex' })
+    }
   }
 
   const {

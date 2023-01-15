@@ -6,4 +6,8 @@ const getPokemons = (params: { limit: number; offset: number }) => {
   })
 }
 
-export { getPokemons }
+const getPokemonById = ({ pokemonId }: { pokemonId: string }) => {
+  return apiUrl.get<Pokemon>(`pokemon/${pokemonId}`)
+}
+
+export { getPokemons, getPokemonById }

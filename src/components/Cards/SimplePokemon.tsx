@@ -1,47 +1,62 @@
 import { Box } from '@components/Box'
 import { ProgressiveImage } from '@components/ProgressiveImage'
 import { Text } from '@components/Text'
-import { scale, SIMPLE_CARD_WIDTH } from '@root/utils/commons'
+import { getSprite, scale, SIMPLE_CARD_WIDTH } from '@root/utils/commons'
 import React, { FC, useMemo } from 'react'
+import { TouchableOpacity } from 'react-native'
 
-export const SimplePokemon: FC<Result> = ({ name, url }) => {
-  const pokemonImageUrl = useMemo(
-    () =>
-      `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${name}.png`,
-    [name]
-  )
+interface SimplePokemonProps extends Result {
+  onPress?: (url: string, name: string) => void
+  disabled?: boolean
+}
+
+export const SimplePokemon: FC<SimplePokemonProps> = ({
+  name,
+  url,
+  onPress,
+  disabled,
+}) => {
+  const pokemonImageUrl = useMemo(() => getSprite(name), [name])
 
   return (
-    <Box
-      width={SIMPLE_CARD_WIDTH}
-      height={SIMPLE_CARD_WIDTH}
-      backgroundColor={'primaryForeground'}
-      borderRadius={scale(18)}
-      overflow={'hidden'}
+    <TouchableOpacity
+      onPress={() => (onPress ? onPress(url, name) : null)}
+      disabled={disabled}
     >
       <Box
-        height={SIMPLE_CARD_WIDTH / 1.5}
         width={SIMPLE_CARD_WIDTH}
-        backgroundColor={'primary'}
-        justifyContent={'center'}
-        alignContent={'center'}
+        height={SIMPLE_CARD_WIDTH}
+        backgroundColor={'primaryForeground'}
+        borderRadius={scale(18)}
+        overflow={'hidden'}
       >
-        <ProgressiveImage
-          style={{ flex: 1, height: '100%', width: '100%' }}
-          source={{ uri: pokemonImageUrl }}
-        />
-      </Box>
-      <Box flex={1} justifyContent={'center'} alignItems={'center'}>
-        <Text
-          textAlign={'center'}
-          textTransform={'capitalize'}
-          variant={'body'}
-          color={'primary'}
-          fontWeight={'bold'}
+        <Box
+          height={SIMPLE_CARD_WIDTH / 1.4}
+          width={SIMPLE_CARD_WIDTH}
+          backgroundColor={'primary'}
+          justifyContent={'center'}
+          alignContent={'center'}
+          borderColor={'primaryBackground'}
+          borderWidth={10}
+          borderRadius={scale(18)}
         >
-          {name}
-        </Text>
+          <ProgressiveImage
+            style={{ height: '100%', width: '100%' }}
+            source={{ uri: pokemonImageUrl }}
+          />
+        </Box>
+        <Box flex={1} justifyContent={'center'} alignItems={'center'}>
+          <Text
+            textAlign={'center'}
+            textTransform={'capitalize'}
+            variant={'body'}
+            color={'primary'}
+            fontWeight={'bold'}
+          >
+            {name}
+          </Text>
+        </Box>
       </Box>
-    </Box>
+    </TouchableOpacity>
   )
 }

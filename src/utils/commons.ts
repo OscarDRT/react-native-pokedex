@@ -18,6 +18,10 @@ const moderateScale = (size: number, factor = 0.5) =>
 
 export const SIMPLE_CARD_WIDTH = width / 2 - scale(16) * 2
 
+export const getSprite = (name: string) => {
+  return `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${name}.png`
+}
+
 export { scale, verticalScale, moderateScale, screenSize }
 
 export interface StackNavigationProps<

@@ -1,4 +1,4 @@
-import { getPokemons } from '@root/api/pokemon'
+import { getPokemonById, getPokemons } from '@root/api/pokemon'
 import { useEffect } from 'react'
 import { useState } from './useState'
 
@@ -21,7 +21,7 @@ export const useGetPokemons = () => {
   })
 
   useEffect(() => {
-    const fetchPokemon = async () => {
+    const fetchPokemons = async () => {
       try {
         setState({ isLoading: true })
         const response = await getPokemons({ limit: 20, offset: state.offset })
@@ -36,7 +36,7 @@ export const useGetPokemons = () => {
         console.error(error)
       }
     }
-    fetchPokemon()
+    fetchPokemons()
   }, [state.offset])
 
   const handleLoadMore = () => {
@@ -44,4 +44,29 @@ export const useGetPokemons = () => {
   }
 
   return { state, handleLoadMore }
+}
+
+export const useGetPokemonById = ({ pokemonId }: { pokemonId: string }) => {
+  const [state, setState] = useState<{
+    pokemon: Pokemon
+    isLoading: boolean
+  }>({
+    pokemon: {} as Pokemon,
+    isLoading: false,
+  })
+
+  useEffect(() => {
+    const fetchPokemon = async () => {
+      try {
+        setState({ isLoading: true })
+        const response = await getPokemonById({ pokemonId })
+        setState({ pokemon: response.data, isLoading: false })
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchPokemon()
+  }, [])
+
+  return { state }
 }

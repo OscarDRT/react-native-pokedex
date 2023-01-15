@@ -9,6 +9,11 @@ const palette = {
   primaryText: '#000000',
   secondaryText: '#FFFFFF',
   transparent: 'transparent',
+  grass: '#00CA91',
+  bug: '#AEDF78',
+  water: '#43CCFF',
+  fire: '#E95C4D',
+  normal: '#A5A5A5',
 }
 
 const theme = createTheme({
@@ -20,6 +25,11 @@ const theme = createTheme({
     primaryText: palette.primaryText,
     secondaryText: palette.secondaryText,
     transparent: palette.transparent,
+    grass: palette.grass,
+    bug: palette.bug,
+    water: palette.water,
+    fire: palette.fire,
+    normal: palette.normal,
   },
   spacing: {
     none: 0,
@@ -50,6 +60,10 @@ const theme = createTheme({
       color: 'primaryText',
     },
     defaults: {},
+  },
+
+  pokemonVariants: {
+    bug: { backgroundColor: 'bug' },
   },
 })
 

@@ -12,6 +12,7 @@ import { scale } from '@root/utils/commons'
 import { Pokedex } from '@screens/Pokedex'
 import { Counter } from '@screens/Counter'
 import { AddPokemon } from '@screens/AddPokemon'
+import { PokemonDetail } from '@screens/PokemonDetail'
 
 export const navigationRef = createNavigationContainerRef()
 
@@ -28,6 +29,8 @@ export const Navigation = () => {
         <RootStack.Screen name={'TabNavigator'} component={TabContainer} />
 
         <RootStack.Screen name={'AddPokemon'} component={AddPokemon} />
+
+        <RootStack.Screen name={'PokemonDetail'} component={PokemonDetail} />
       </RootStack.Navigator>
     </NavigationContainer>
   )

@@ -1,34 +1,39 @@
-import { opacity } from '@shopify/restyle'
 import React, { useCallback, useMemo } from 'react'
 import {
+  View,
   Animated,
-  ImageResizeMode,
-  Image,
-  ImageSourcePropType,
-  StyleSheet,
   StyleProp,
-  ImageStyle,
   ViewStyle,
+  StyleSheet,
+  ImageStyle,
 } from 'react-native'
-import { Box } from './Box'
-import FastImage, {
-  Source,
-  ResizeMode,
-  FastImageProps,
-} from 'react-native-fast-image'
+import FastImage, { Source, ResizeMode } from 'react-native-fast-image'
 
 const AnimatedFastImage = Animated.createAnimatedComponent(FastImage)
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+})
+
 interface ProgressiveImageProps {
-  source: Source
+  blurRadius?: number
   resizeMode?: ResizeMode
+  source: Source
   containerStyle?: StyleProp<ViewStyle>
   style?: Animated.WithAnimatedValue<StyleProp<ImageStyle>>
 }
 
-export const ProgressiveImage: React.FC<
-  ProgressiveImageProps & FastImageProps
-> = ({ source, resizeMode = 'cover', style, ...props }) => {
+export const ProgressiveImage = ({
+  style,
+  source,
+  containerStyle,
+  resizeMode,
+  ...props
+}: ProgressiveImageProps) => {
   const { sourceUriAnimated, sourceUri } = useMemo(
     () => ({
       sourceUriAnimated: new Animated.Value(0),
@@ -46,15 +51,19 @@ export const ProgressiveImage: React.FC<
   }, [sourceUriAnimated])
 
   return (
-    <Box flex={1} alignItems={'center'} justifyContent={'center'}>
+    <View style={[styles.container, containerStyle]}>
       <AnimatedFastImage
         resizeMode={resizeMode}
         source={{ uri: sourceUri }}
-        /* @ts-ignore */
-        style={[style, StyleSheet.absoluteFill, { opacity: sourceUriAnimated }]}
         onLoad={() => onImageLoad()}
+        style={[
+          /* @ts-ignore */
+          style,
+          StyleSheet.absoluteFill,
+          { opacity: sourceUriAnimated, zIndex: 2 },
+        ]}
         {...props}
       />
-    </Box>
+    </View>
   )
 }

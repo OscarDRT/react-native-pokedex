@@ -15,8 +15,24 @@ type Pokemon = {
   /*   species: Species
   sprites: Sprites
   stats: Stat[]
-  types: Type[] */
+  */
+  sprites: Sprites
+  types: Type[]
   weight: number
+}
+
+type Sprites = {
+  front_default: string
+}
+
+type Type = {
+  slot: number
+  type: Type2
+}
+
+type Type2 = {
+  name: string
+  url: string
 }
 
 type Result = {

@@ -3,6 +3,7 @@ type RootStackParamList = {
   InitialLoad: undefined
   TabNavigator: undefined
   AddPokemon: undefined
+  PokemonDetail: { url: string; pokemonId?: string; name: string }
 }
 
 type AppTabParamList = {

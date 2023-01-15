@@ -62,8 +62,8 @@ const theme = createTheme({
     defaults: {},
   },
 
-  pokemonVariants: {
-    bug: { backgroundColor: 'bug' },
+  buttonVariants: {
+    primary: { backgroundColor: 'primary', height: scale(56) },
   },
 })
 

@@ -5,7 +5,7 @@ import { HeaderBack } from '@components/Header'
 import { Box } from '@components/Box'
 import { AddPokemonNavigation } from '@components/Buttons/AddPokemonNavigation'
 
-export const Counter = () => {
+const Counter = () => {
   return (
     <MainContainer>
       <HeaderBack title="Counter" showBackButton={false}>
@@ -22,3 +22,5 @@ export const Counter = () => {
     </MainContainer>
   )
 }
+
+export default Counter

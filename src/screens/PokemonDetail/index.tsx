@@ -9,7 +9,7 @@ import { Text } from '@components/Text'
 import { SimplePokemon } from '@components/Cards/SimplePokemon'
 import { Button } from '@components/Buttons/Button'
 
-export const PokemonDetail: FC<StackNavigationProps<'PokemonDetail'>> = ({
+const PokemonDetail: FC<StackNavigationProps<'PokemonDetail'>> = ({
   navigation,
   route,
 }) => {
@@ -116,3 +116,5 @@ export const PokemonDetail: FC<StackNavigationProps<'PokemonDetail'>> = ({
     </MainContainer>
   )
 }
+
+export default PokemonDetail

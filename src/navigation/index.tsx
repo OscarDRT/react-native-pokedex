@@ -5,14 +5,17 @@ import {
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Profile } from '@screens/Profile'
 import { useTheme } from '@root/theme/ThemeProvider'
 import { Hash, House, User } from 'phosphor-react-native'
 import { scale } from '@root/utils/commons'
-import { Pokedex } from '@screens/Pokedex'
-import { Counter } from '@screens/Counter'
-import { AddPokemon } from '@screens/AddPokemon'
-import { PokemonDetail } from '@screens/PokemonDetail'
+
+import {
+  AddPokemon,
+  Counter,
+  Pokedex,
+  PokemonDetail,
+  Profile,
+} from '@root/screens'
 
 export const navigationRef = createNavigationContainerRef()
 

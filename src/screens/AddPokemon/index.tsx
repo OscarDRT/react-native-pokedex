@@ -13,7 +13,7 @@ import { ActivityIndicator, Animated, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 
-export const AddPokemon = () => {
+const AddPokemon = () => {
   const { state, handleLoadMore } = useGetPokemons()
 
   const [currentOffset, setCurrentOffset] = useState<number>(0)
@@ -109,3 +109,5 @@ export const AddPokemon = () => {
     </MainContainer>
   )
 }
+
+export default AddPokemon

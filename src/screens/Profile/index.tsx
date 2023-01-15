@@ -5,7 +5,7 @@ import { HeaderBack } from '@components/Header'
 import { Box } from '@components/Box'
 import { AddPokemonNavigation } from '@components/Buttons/AddPokemonNavigation'
 
-export const Profile = () => {
+const Profile = () => {
   return (
     <MainContainer>
       <HeaderBack title="Profile" showBackButton={false}>
@@ -22,3 +22,5 @@ export const Profile = () => {
     </MainContainer>
   )
 }
+
+export default Profile

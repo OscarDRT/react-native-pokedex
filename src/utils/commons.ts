@@ -3,8 +3,10 @@ import { Dimensions } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
 import { Export } from 'phosphor-react-native'
+import { AppDispatch, RootState } from '@root/store'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
-export const { width, height } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 
 //Guideline sizes are based on standard ~5" screen mobile device
 const guidelineBaseWidth = 350
@@ -18,15 +20,29 @@ const moderateScale = (size: number, factor = 0.5) =>
 
 export const SIMPLE_CARD_WIDTH = width / 2 - scale(16) * 2
 
-export const getSprite = (name: string) => {
+const getSprite = (name: string) => {
   return `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${name}.png`
 }
 
-export const capitalize = (str: string) => {
+const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
-export { scale, verticalScale, moderateScale, screenSize }
+const useAppDispatch: () => AppDispatch = useDispatch
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+
+export {
+  width,
+  height,
+  scale,
+  verticalScale,
+  moderateScale,
+  screenSize,
+  getSprite,
+  capitalize,
+  useAppDispatch,
+  useAppSelector,
+}
 
 export interface StackNavigationProps<
   RouteName extends keyof RootStackParamList

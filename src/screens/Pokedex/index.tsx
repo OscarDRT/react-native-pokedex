@@ -5,7 +5,7 @@ import { HeaderBack } from '@components/Header'
 import { Box } from '@components/Box'
 import { AddPokemonNavigation } from '@components/Buttons/AddPokemonNavigation'
 
-export const Pokedex = () => {
+const Pokedex = () => {
   return (
     <MainContainer>
       <HeaderBack title="Pokédex" showBackButton={false}>
@@ -22,3 +22,5 @@ export const Pokedex = () => {
     </MainContainer>
   )
 }
+
+export default Pokedex

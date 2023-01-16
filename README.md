@@ -1,5 +1,6 @@
+<div style="width:100%;height:0;padding-bottom:75%;position:relative;"><iframe src="https://giphy.com/embed/amrNGnZUeWhZC" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/pokemon-gif-gifs-amrNGnZUeWhZC"></a></p>
 
-![Logo]([https://www.vhv.rs/dpng/d/498-4989799_pokemon-pokeball-transparent-pokmon-hd-png-download.png](https://media-cldnry.s-nbcnews.com/image/upload/newscms/2021_06/1670529/pokemon-te-main-210205.jpg)
+
 # Pokédex
 
 ## About The Project

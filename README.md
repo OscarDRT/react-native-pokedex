@@ -1,5 +1,5 @@
 
-![Logo](https://e7.pngegg.com/pngimages/902/338/png-clipart-poke-ball-open-wv-computer-wallpaper-desktop-wallpaper-thumbnail.png)
+![Logo](https://www.vhv.rs/dpng/d/498-4989799_pokemon-pokeball-transparent-pokmon-hd-png-download.png)
 # Pokédex
 
 ## About The Project

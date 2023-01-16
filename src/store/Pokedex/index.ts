@@ -20,7 +20,7 @@ export const pokedexSlice = createSlice({
     },
     removePokemon: (state, action: PayloadAction<string>) => {
       delete state.pokedex[action.payload]
-      state.count -= 1
+      state.count = state.count - 1 >= 0 ? state.count - 1 : 0
     },
     removeAllPokemons: state => {
       state = initialState

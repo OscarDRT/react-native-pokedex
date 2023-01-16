@@ -1,5 +1,5 @@
 
-![Logo]([https://www.vhv.rs/dpng/d/498-4989799_pokemon-pokeball-transparent-pokmon-hd-png-download.png](https://media-cldnry.s-nbcnews.com/image/upload/newscms/2021_06/1670529/pokemon-te-main-210205.jpg))
+![Logo]([https://www.vhv.rs/dpng/d/498-4989799_pokemon-pokeball-transparent-pokmon-hd-png-download.png](https://media-cldnry.s-nbcnews.com/image/upload/newscms/2021_06/1670529/pokemon-te-main-210205.jpg)
 # Pokédex
 
 ## About The Project

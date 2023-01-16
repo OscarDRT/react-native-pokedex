@@ -4,8 +4,11 @@ import { Text } from '@components/Text'
 import { HeaderBack } from '@components/Header'
 import { Box } from '@components/Box'
 import { AddPokemonNavigation } from '@components/Buttons/AddPokemonNavigation'
+import { useUserState } from '@root/hooks/user'
 
 const Profile = () => {
+  const user = useUserState()
+
   return (
     <MainContainer>
       <HeaderBack title="Profile" showBackButton={false}>

@@ -7,7 +7,11 @@ import {
   StyleSheet,
   ImageStyle,
 } from 'react-native'
-import FastImage, { Source, ResizeMode } from 'react-native-fast-image'
+import FastImage, {
+  Source,
+  ResizeMode,
+  FastImageProps,
+} from 'react-native-fast-image'
 
 const AnimatedFastImage = Animated.createAnimatedComponent(FastImage)
 
@@ -25,6 +29,7 @@ interface ProgressiveImageProps {
   source: Source
   containerStyle?: StyleProp<ViewStyle>
   style?: Animated.WithAnimatedValue<StyleProp<ImageStyle>>
+  fastImageProps?: FastImageProps
 }
 
 export const ProgressiveImage = ({
@@ -32,6 +37,7 @@ export const ProgressiveImage = ({
   source,
   containerStyle,
   resizeMode,
+  fastImageProps,
   ...props
 }: ProgressiveImageProps) => {
   const { sourceUriAnimated, sourceUri } = useMemo(
@@ -62,6 +68,7 @@ export const ProgressiveImage = ({
           StyleSheet.absoluteFill,
           { opacity: sourceUriAnimated, zIndex: 2 },
         ]}
+        {...fastImageProps}
         {...props}
       />
     </View>

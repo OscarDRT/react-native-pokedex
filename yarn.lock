@@ -778,6 +778,11 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@bam.tech/react-native-image-resizer@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@bam.tech/react-native-image-resizer/-/react-native-image-resizer-3.0.4.tgz#3e127818e88df89e5c51a07e2556bf6ef872df26"
+  integrity sha512-p2Ecs469bntk4Ke4CEYyEoVBKBT+8JyaXXPz4Fm55s9G+jEg99p1V9MHkza2k7OAq1iUF8oAtZ/wZ9zKn6b43Q==
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
@@ -6090,6 +6095,11 @@ react-native-gesture-handler@^2.9.0:
     invariant "^2.2.4"
     lodash "^4.17.21"
     prop-types "^15.7.2"
+
+react-native-image-picker@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-5.0.0.tgz#c3ad339c4df4c514b296dd9030e882f8b924ccdc"
+  integrity sha512-NkpMRSQ4ow3ot9VKaGlh7kge7r2mQNAL1WrlYMhNX+TcVVNbrhJm9gvEu35ELM0r9WwkKv19Zd8r/Vxw+ISL5w==
 
 react-native-safe-area-context@^4.4.1:
   version "4.4.1"

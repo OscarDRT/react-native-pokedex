@@ -1,6 +1,5 @@
-import React, { FC, useCallback } from 'react'
+import React, { FC, useCallback, useEffect } from 'react'
 import { MainContainer } from '@components/Containers/Main'
-import { Text } from '@components/Text'
 import { HeaderBack } from '@components/Header'
 import { Box } from '@components/Box'
 import { AddPokemonNavigation } from '@components/Buttons/AddPokemonNavigation'
@@ -12,6 +11,8 @@ import { ItemPokemonCard } from '@components/Cards/PokemonCard'
 import { ActivityIndicator, LayoutChangeEvent } from 'react-native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { ListEmptyComponent } from './auxiliars/ListEmptyComponent'
+import { GestureDetector, Gesture } from 'react-native-gesture-handler'
+import { PokemonsList } from './auxiliars/PokemonsList'
 
 const Pokedex: FC<StackNavigationProps<'TabNavigator'>> = ({ navigation }) => {
   const [state, setState] = useState<{
@@ -19,11 +20,13 @@ const Pokedex: FC<StackNavigationProps<'TabNavigator'>> = ({ navigation }) => {
     pageSize: number
     isLoading: boolean
     layout: { width: number; height: number }
+    currentPageIds: string[]
   }>({
     pageIndex: 0,
     pageSize: 2,
     isLoading: true,
     layout: { width: 0, height: 0 },
+    currentPageIds: [],
   })
 
   const pokemons = usePokemonsState()
@@ -40,11 +43,6 @@ const Pokedex: FC<StackNavigationProps<'TabNavigator'>> = ({ navigation }) => {
     state.pageIndex * state.pageSize + state.pageSize
   )
 
-  const loadNextPage = () => {
-    setState({ pageIndex: state.pageIndex + 1 })
-    console.log('entre')
-  }
-
   const handleOnLayout = (event: LayoutChangeEvent) => {
     const { width, height } = event.nativeEvent.layout
     setState({ layout: { width, height }, isLoading: false })
@@ -57,41 +55,57 @@ const Pokedex: FC<StackNavigationProps<'TabNavigator'>> = ({ navigation }) => {
 
   const onShow = useCallback(
     ({ pokemonId, name }: { pokemonId: string; name: string }) => {
-      navigation.navigate('PokemonDetail', { pokemonId, name })
+      navigation.navigate('PokemonDetail', { pokemonId, name, url: '' })
     },
     []
   )
+
+  const gesture = Gesture.Pan().onFinalize(event => {
+    if (event.translationY < 0) {
+      if (state.pageIndex > 0) {
+        setState({ pageIndex: state.pageIndex - 1 })
+      }
+    } else {
+      if (state.pageIndex < pokemons.length / state.pageSize - 1) {
+        setState({ pageIndex: state.pageIndex + 1 })
+      }
+    }
+  })
+
+  useEffect(() => {
+    const currentPageIds = pokemons.slice(
+      state.pageIndex * state.pageSize,
+      state.pageIndex * state.pageSize + state.pageSize
+    )
+    setState({ currentPageIds })
+  }, [pokemons, state.pageIndex, state.pageSize])
+
+  useEffect(() => {
+    console.log(state)
+  }, [state])
 
   return (
     <MainContainer>
       <HeaderBack title="Pokédex" showBackButton={false}>
         <AddPokemonNavigation />
       </HeaderBack>
-      <Box flex={1} onLayout={handleOnLayout}>
-        {!state.isLoading ? (
-          <FlashList
-            showsVerticalScrollIndicator={false}
-            data={currentPageIds}
-            renderItem={({ item, index }) => (
-              <ItemPokemonCard
-                id={item}
-                height={heightPokemonCard}
-                key={`${item}-${index}`}
-                onRemove={pokemonId => onRemove({ pokemonId })}
-                onShow={(pokemonId, name) => onShow({ pokemonId, name })}
-              />
-            )}
-            estimatedItemSize={heightPokemonCard}
-            ListEmptyComponent={ListEmptyComponent}
-            //onEndReached={loadNextPage}
-            //onEndReachedThreshold={0.1}
-          />
-        ) : (
-          <Box>
-            <ActivityIndicator />
-          </Box>
-        )}
-      </Box>
+
+      <GestureDetector gesture={gesture}>
+        <Box flex={1} onLayout={handleOnLayout}>
+          {!state.isLoading ? (
+            <PokemonsList
+              currentPageIds={state.currentPageIds}
+              heightPokemonCard={heightPokemonCard}
+              onRemove={pokemonId => onRemove({ pokemonId })}
+              onShow={(pokemonId, name) => onShow({ pokemonId, name })}
+            />
+          ) : (
+            <Box>
+              <ActivityIndicator />
+            </Box>
+          )}
+        </Box>
+      </GestureDetector>
     </MainContainer>
   )
 }

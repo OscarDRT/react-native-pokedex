@@ -10,8 +10,10 @@ import { ActivityIndicator, LayoutChangeEvent } from 'react-native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { GestureDetector, Gesture } from 'react-native-gesture-handler'
 import { PokemonsList } from './auxiliars/PokemonsList'
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 
-const Pokedex: FC<StackNavigationProps<'TabNavigator'>> = ({ navigation }) => {
+const Pokedex = () => {
   const [state, setState] = useState<{
     pageIndex: number
     pageSize: number
@@ -25,6 +27,9 @@ const Pokedex: FC<StackNavigationProps<'TabNavigator'>> = ({ navigation }) => {
     layout: { width: 0, height: 0 },
     currentPageIds: [],
   })
+
+  const navigation =
+    useNavigation<StackNavigationProp<RootStackParamList, 'root'>>()
 
   const pokemons = usePokemonsState()
 

@@ -8,14 +8,19 @@ import { Pressable } from 'react-native'
 
 interface AvatarProps {
   uri: string
-  openCamera: () => void
+  openCamera?: () => void
+  disabled?: boolean
 }
 
-export const Avatar: FC<AvatarProps> = ({ uri, openCamera }) => {
+export const Avatar: FC<AvatarProps> = ({ uri, openCamera, disabled }) => {
   const theme = useTheme()
 
+  const avatar =
+    uri ??
+    'https://improveyourdrawings.com/wp-content/uploads/2019/02/Step-12-Shadows.jpg'
+
   return (
-    <Pressable onPress={openCamera}>
+    <Pressable onPress={openCamera} disabled={disabled}>
       <Box
         height={scale(150)}
         width={scale(150)}
@@ -25,14 +30,18 @@ export const Avatar: FC<AvatarProps> = ({ uri, openCamera }) => {
         alignItems={'center'}
         overflow={'hidden'}
       >
-        {uri ? (
+        {avatar ? (
           <Box
             borderRadius={scale(140)}
             height={scale(140)}
             width={scale(140)}
             overflow={'hidden'}
           >
-            <ProgressiveImage key={uri} resizeMode={'cover'} source={{ uri }} />
+            <ProgressiveImage
+              key={uri}
+              resizeMode={'cover'}
+              source={{ uri: avatar }}
+            />
           </Box>
         ) : (
           <Camera

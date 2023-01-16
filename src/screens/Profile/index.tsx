@@ -1,48 +1,32 @@
-import React from 'react'
+import React, { FC, useCallback } from 'react'
 import { MainContainer } from '@components/Containers/Main'
 import { Text } from '@components/Text'
 import { HeaderBack } from '@components/Header'
 import { Box } from '@components/Box'
 import { AddPokemonNavigation } from '@components/Buttons/AddPokemonNavigation'
 import { useUserActions, useUserState } from '@root/hooks/user'
-import { scale } from '@root/utils/commons'
-import { Camera } from 'phosphor-react-native'
+import { StackNavigationProps } from '@root/utils/commons'
 import { useTheme } from '@root/theme/ThemeProvider'
-import { Pressable } from 'react-native'
 import { launchCamera } from 'react-native-image-picker'
-import { ProgressiveImage } from '@components/ProgressiveImage'
 import { Avatar } from './auxiliars/Avatar'
+import { Button } from '@components/Buttons/Button'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import { NavigatorScreenParams, useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 const Profile = () => {
   const user = useUserState()
 
-  const actions = useUserActions()
+  const navigation =
+    useNavigation<StackNavigationProp<RootStackParamList, 'root'>>()
 
   const theme = useTheme()
 
-  const openCamera = async () => {
-    try {
-      const result = await launchCamera({
-        mediaType: 'photo',
-        maxHeight: 350,
-        maxWidth: 350,
-        cameraType: 'back',
-        quality: 1,
-      })
+  const tabBarHeight = useBottomTabBarHeight()
 
-      if (result.didCancel) {
-        console.log('User cancelled image picker')
-      } else if (result.errorCode) {
-        console.log('Error code: ', result.errorCode)
-      } else if (result.errorMessage) {
-        console.log('Error message ', result.errorMessage)
-      } else {
-        actions.setAvatar({ avatar: result?.assets?.[0] as Asset })
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const onNavigate = useCallback(() => {
+    return navigation.navigate('EditProfile')
+  }, [])
 
   return (
     <MainContainer>
@@ -50,7 +34,22 @@ const Profile = () => {
         <AddPokemonNavigation />
       </HeaderBack>
       <Box flex={1} padding={'m'} alignItems={'center'}>
-        <Avatar uri={user.avatar.uri as string} openCamera={openCamera} />
+        <Avatar uri={user.avatar.uri as string} disabled={true} />
+        <Text
+          margin={'l'}
+          variant={'title'}
+          color={'secondaryText'}
+        >{`Name`}</Text>
+        <Text margin={'l'} variant={'subtitle'}>{`${user.name}`}</Text>
+        <Text
+          margin={'l'}
+          variant={'title'}
+          color={'secondaryText'}
+        >{`Birthdate`}</Text>
+        <Text margin={'l'} variant={'subtitle'}>{`${user.birthdate}`}</Text>
+      </Box>
+      <Box style={{ padding: tabBarHeight + theme.spacing.s }}>
+        <Button title={'Edit profile'} onPress={onNavigate} />
       </Box>
     </MainContainer>
   )

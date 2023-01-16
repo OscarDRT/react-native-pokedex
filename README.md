@@ -1,5 +1,4 @@
-<code><div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/96Xaju9KRM4ne" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/pokemon-96Xaju9KRM4ne">via GIPHY</a></p></code>
-
+<h1 align="center"><img src="https://github.com/OscarDRT/react-native-pokedex/blob/main/images/giphy.gif" height="55px" width="55px"></h1>
 
 # Pokédex
 
@@ -8,10 +7,6 @@
 This repository contains a pokédex app made with React Native cli.
 
 To run the app on your local machine, you must first make sure you have an React Native development environment set up. You can find instructions on how to do this in the React Native documentation.
-
-
-
-
 
 ## Features
 
@@ -27,18 +22,6 @@ To run the app on your local machine, you must first make sure you have an React
 
 - [Profile](https://github.com/OscarDRT/react-native-pokedex/blob/main/images/Profile.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
 ## Built With
 
 - [Redux](https://redux.js.org/) - State management library for JavaScript applications.
@@ -48,47 +31,53 @@ To run the app on your local machine, you must first make sure you have an React
 - [Restyle](https://github.com/Shopify/restyle) - The Restyle library provides a type-enforced system for building UI components in React Native with TypeScript. It's a library for building UI libraries, with themability as the core focus.
 
 These are just some of the libraries and tools that have been used in this project. You can find a more complete list of dependencies in the package.json file in the repository.
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file(Exclusive variables for testing).
 
 `API_URL`=`https://pokeapi.co/api/v2`
 
-
 ## Getting Started
 
 Once you have the development environment set up, follow these steps:
 
 1. Clone the repo
+
 ```sh
 git clone https://github.com/OscarDRT/react-native-pokedex.git
 ```
 
 2. Enter the folder
+
 ```sh
 cd react-native-pokedex
 ```
 
 3. install dependencies
+
 ```sh
 yarn install
 ```
 
 4. install pods dependencies
+
 ```sh
 npx pod-install
 ```
 
 5. Start the development server
+
 ```sh
-yarn ios 
+yarn ios
 or
 yarn android
 ```
+
 ## Usage/Examples
 
-
 Build a simple screen
+
 ```javascript
 import React from 'react'
 import { Box } from '@components/Box'
@@ -112,7 +101,6 @@ export const Profile = () => {
   )
 }
 ```
-
 
 ## Authors
 

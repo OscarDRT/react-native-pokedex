@@ -46,7 +46,6 @@ const Pokedex: FC<StackNavigationProps<'TabNavigator'>> = ({ navigation }) => {
   }
 
   const onRemove = useCallback(({ pokemonId }: { pokemonId: string }) => {
-    console.log(pokemonId)
     actions.removePokemon({ pokemonId })
   }, [])
 
@@ -76,10 +75,6 @@ const Pokedex: FC<StackNavigationProps<'TabNavigator'>> = ({ navigation }) => {
     )
     setState({ currentPageIds })
   }, [pokemons, state.pageIndex, state.pageSize])
-
-  useEffect(() => {
-    console.log(state)
-  }, [state])
 
   return (
     <MainContainer>

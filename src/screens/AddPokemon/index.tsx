@@ -41,7 +41,6 @@ const AddPokemon = () => {
   )
 
   useEffect(() => {
-    console.log(currentOffset)
     if (currentOffset <= 0) {
       Animated.timing(animation, {
         toValue: 0,

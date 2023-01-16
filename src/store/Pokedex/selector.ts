@@ -11,3 +11,8 @@ export const pokemonSelector = createSelector(
   (_: any, id: string) => id,
   (pokedex, id) => pokedex[id]
 )
+
+export const countSelector = createSelector(
+  ({ pokedex }: RootState) => pokedex.count,
+  count => count
+)

@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://github.com/OscarDRT/react-native-pokedex/blob/main/images/giphy.gif" height="55px" width="55px"></h1>
+<h1 align="center"><img src="https://github.com/OscarDRT/react-native-pokedex/blob/main/images/giphy.gif" height="150px" width="150px"></h1>
 
 # Pokédex
 

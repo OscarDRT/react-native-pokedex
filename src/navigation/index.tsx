@@ -15,6 +15,7 @@ import {
   Pokedex,
   PokemonDetail,
   Profile,
+  EditProfile,
 } from '@root/screens'
 
 export const navigationRef = createNavigationContainerRef()
@@ -34,6 +35,8 @@ export const Navigation = () => {
         <RootStack.Screen name={'AddPokemon'} component={AddPokemon} />
 
         <RootStack.Screen name={'PokemonDetail'} component={PokemonDetail} />
+
+        <RootStack.Screen name={'EditProfile'} component={EditProfile} />
       </RootStack.Navigator>
     </NavigationContainer>
   )

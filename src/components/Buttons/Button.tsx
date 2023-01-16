@@ -60,3 +60,7 @@ export const Button: FC<ButtonProps> = ({
     </TouchableOpacity>
   )
 }
+
+Button.defaultProps = {
+  variant: 'primary',
+}

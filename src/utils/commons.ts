@@ -2,9 +2,9 @@ import { Dimensions } from 'react-native'
 
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
-import { Export } from 'phosphor-react-native'
 import { AppDispatch, RootState } from '@root/store'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import moment from 'moment'
 
 const { width, height } = Dimensions.get('window')
 
@@ -25,7 +25,7 @@ const getSprite = (name: string) => {
 }
 
 const capitalize = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1)
+  return str?.charAt(0)?.toUpperCase() + str?.slice(1)
 }
 
 const removeDuplicates = (

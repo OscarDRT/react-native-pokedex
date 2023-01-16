@@ -4,9 +4,11 @@ import { pokedexReducer, PokedexState } from './Pokedex'
 import persistReducer from 'redux-persist/es/persistReducer'
 import thunk from 'redux-thunk'
 import persistStore from 'redux-persist/es/persistStore'
+import { userReducer } from './user'
 
 export interface AplicationState {
   pokedex: PokedexState
+  user: UserState
 }
 
 const rootPersistConfig = {
@@ -21,8 +23,16 @@ const pokedexPersistConfig = {
   blacklist: [],
 }
 
+const userPersistConfig = {
+  key: 'user',
+  storage: AsyncStorage,
+  blacklist: [],
+  whitelist: ['avatar'],
+}
+
 const rootApplicationReducerMap = {
   pokedex: persistReducer<PokedexState>(pokedexPersistConfig, pokedexReducer),
+  user: persistReducer<UserState>(userPersistConfig, userReducer),
 }
 
 const rootReducer = combineReducers<AplicationState>(rootApplicationReducerMap)

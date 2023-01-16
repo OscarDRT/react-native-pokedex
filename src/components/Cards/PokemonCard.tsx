@@ -27,7 +27,7 @@ export const PokemonCard: FC<{
         alignItems={'center'}
       >
         <Text variant={'title'} color={'secondaryText'}>
-          {capitalize(pokemon.name)}
+          {capitalize(pokemon?.name)}
         </Text>
       </Box>
       <Box flex={0.8}>
@@ -35,7 +35,7 @@ export const PokemonCard: FC<{
           <Box flex={0.4}>
             <Box flex={1}>
               <Box flex={0.7}>
-                <ProgressiveImage source={{ uri: getSprite(pokemon.name) }} />
+                <ProgressiveImage source={{ uri: getSprite(pokemon?.name) }} />
               </Box>
               <Box flex={0.3} padding={'s'} justifyContent={'flex-end'}>
                 <Box
@@ -59,7 +59,7 @@ export const PokemonCard: FC<{
                   title={'Show'}
                   variant={'primary'}
                   style={{ height: scale(34) }}
-                  onPress={() => onShow(pokemon.id.toString(), pokemon.name)}
+                  onPress={() => onShow(pokemon?.id?.toString(), pokemon?.name)}
                 />
               </Box>
             </Box>
@@ -90,7 +90,7 @@ export const PokemonCard: FC<{
                   title={'Remove'}
                   variant={'secondary'}
                   style={{ height: scale(34) }}
-                  onPress={() => onRemove(pokemon.id.toString())}
+                  onPress={() => onRemove(pokemon?.id?.toString())}
                 />
               </Box>
             </Box>

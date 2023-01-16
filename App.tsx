@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { persistor, store } from '@root/store'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 export default function App() {
   return (
@@ -12,7 +13,9 @@ export default function App() {
       <SafeAreaProvider>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <Navigation />
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <Navigation />
+            </GestureHandlerRootView>
           </PersistGate>
         </Provider>
       </SafeAreaProvider>

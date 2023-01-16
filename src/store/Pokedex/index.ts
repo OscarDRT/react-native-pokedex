@@ -2,9 +2,10 @@ import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 
 export interface PokedexState {
   pokedex: { [key: string]: Pokemon }
+  count: number
 }
 
-const initialState: PokedexState = { pokedex: {} }
+const initialState: PokedexState = { pokedex: {}, count: 0 }
 
 export const pokedexSlice = createSlice({
   name: 'pokedex',
@@ -15,9 +16,11 @@ export const pokedexSlice = createSlice({
         ...current(state.pokedex),
         [action.payload.id]: action.payload,
       }
+      state.count += 1
     },
     removePokemon: (state, action: PayloadAction<string>) => {
       delete state.pokedex[action.payload]
+      state.count -= 1
     },
     removeAllPokemons: state => {
       state = initialState

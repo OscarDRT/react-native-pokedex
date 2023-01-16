@@ -30,8 +30,7 @@ const PokemonDetail: FC<StackNavigationProps<'PokemonDetail'>> = ({
   const addPokemon = () => {
     if (!InPokedex) {
       actions.setPokemon({ pokemon: state.pokemon })
-      /* @ts-ignore */
-      navigation.navigate('TabNavigator', { screen: 'Pokedex' })
+      navigation.canGoBack() && navigation.goBack()
     }
   }
 
